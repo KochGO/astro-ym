@@ -1,0 +1,33 @@
+{
+  "name": "astro-ym",
+  "version": "1.0.0",
+  "description": "Yandex Metrika integration for Astro with full ClientRouter support",
+  "type": "module",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "src",
+    "index.ts",
+    "README.md"
+  ],
+  "author": "KochGO",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KochGO/astro-ym.git"
+  },
+  "homepage": "https://github.com/KochGO/astro-ym#readme",
+  "bugs": {
+    "url": "https://github.com/KochGO/astro-ym/issues"
+  },
+  "peerDependencies": {
+    "astro": "^4.0.0 || ^5.0.0"
+  },
+  "devDependencies": {
+    "astro": "^5.0.0",
+    "typescript": "^5.0.0"
+  }
+}
