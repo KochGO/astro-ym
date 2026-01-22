@@ -13,7 +13,10 @@
     "index.ts",
     "README.md"
   ],
-  "author": "KochGO",
+  "author": {
+  "name": "KochGO",
+  "url": "https://kochgo.ru"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",

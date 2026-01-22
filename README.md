@@ -119,6 +119,10 @@ Ensure the `<YandexMetrika />` component is mounted on the page. The helper func
 
 If you don't see events in the dashboard, check if you have an AdBlocker enabled. It often blocks `mc.yandex.ru`.
 
+## Author
+
+Created by [KochGO — AI Solutions Architect](https://kochgo.ru).
+
 ## 📄 License
 
 MIT © [KochGO](https://github.com/KochGO)
