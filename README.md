@@ -122,7 +122,3 @@ If you don't see events in the dashboard, check if you have an AdBlocker enabled
 ## 📄 License
 
 MIT © [KochGO](https://github.com/KochGO)
-
-```
-
-```
