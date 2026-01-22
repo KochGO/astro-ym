@@ -1,6 +1,6 @@
 {
   "name": "astro-ym",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Yandex Metrika integration for Astro with full ClientRouter support",
   "type": "module",
   "main": "./index.ts",
@@ -14,8 +14,8 @@
     "README.md"
   ],
   "author": {
-  "name": "KochGO",
-  "url": "https://kochgo.ru"
+    "name": "KochGO",
+    "url": "https://kochgo.ru"
   },
   "license": "MIT",
   "repository": {
