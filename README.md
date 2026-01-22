@@ -22,8 +22,6 @@ Designed specifically for **Astro 5+** and **Client Router** (formerly View Tran
 npm install astro-ym
 ```
 
-````
-
 ## 🚀 Usage
 
 Add the `<YandexMetrika />` component to your main Layout file (e.g., `src/layouts/Layout.astro`). It is recommended to place it before the closing `</body>` tag.
@@ -125,4 +123,6 @@ If you don't see events in the dashboard, check if you have an AdBlocker enabled
 
 MIT © [KochGO](https://github.com/KochGO)
 
-````
+```
+
+```
