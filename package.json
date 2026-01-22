@@ -1,6 +1,6 @@
 {
   "name": "astro-ym",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yandex Metrika integration for Astro with full ClientRouter support",
   "type": "module",
   "main": "./index.ts",
