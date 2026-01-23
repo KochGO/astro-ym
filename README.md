@@ -6,7 +6,7 @@
 
 **Lightweight, type-safe Yandex Metrika integration for Astro.**
 
-Designed specifically for **Astro 5+** and **Client Router** (formerly View Transitions). It handles SPA navigation correctly out of the box, eliminating duplicate hits and ensuring accurate tracking.
+Designed for **Astro 4+** and **Astro 5+** (supports both **View Transitions** and the new **Client Router**). It handles SPA navigation correctly out of the box, eliminating duplicate hits and ensuring accurate tracking.
 
 ## ✨ Features
 
