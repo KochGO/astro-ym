@@ -11,10 +11,11 @@ Designed for **Astro 4+** and **Astro 5+** (supports both **View Transitions** a
 ## ✨ Features
 
 - 🚀 **Client Router Support:** Automatically tracks page views on route changes (SPA navigation) using `astro:page-load`.
-- ⚡ **Zero Config:** Smart defaults (Webvisor, Clickmap, Link tracking enabled by default).
+- 💤 **Lazy Loading:** Optional lazy load of Yandex Metrika script (load on first user interaction or after timeout) for better Lighthouse scores.
+- ⚡ **Zero Config:** Smart defaults (Clickmap, Link tracking enabled by default).
 - 🛡 **TypeScript:** Fully typed component and helper functions.
 - 🎯 **Goals Helper:** Exported `reachGoal` function for easy conversion tracking.
-- 🪶 **Lightweight:** Uses the modern Yandex tag.js structure.
+- 🪶 **Lightweight:** Uses the modern Yandex `tag.js` structure and queues calls before the script loads.
 
 ## 📦 Installation
 
@@ -60,6 +61,22 @@ You can enable/disable specific features via props.
 />
 ```
 
+### Lazy Loading (recommended for performance)
+
+You can enable lazy loading so that the Yandex Metrika script loads only after the first user interaction (scroll, click, mousemove, touch, keydown) or after a fallback timeout.
+
+```astro
+<YandexMetrika
+  counterId={12345678}
+  webvisor={true}
+  lazy={true}
+  // optional: fallback timeout in ms (default: 3500)
+  timeout={4000}
+/>
+```
+
+This keeps ym available immediately (calls are queued), but delays loading tag.js to improve performance metrics like TBT and LCP.
+
 ## 🎯 Sending Goals (Conversions)
 
 You can trigger goals from anywhere in your client-side code (UI components, scripts) using the exported helper. It automatically detects the counter ID.
@@ -96,18 +113,26 @@ export const BuyButton = () => {
 
 ## 📚 Props Reference
 
-| Prop                  | Type                | Default      | Description                                                                             |
-| :-------------------- | :------------------ | :----------- | :-------------------------------------------------------------------------------------- |
-| `counterId`           | `number \| string`  | **Required** | Your Yandex Metrika Counter ID.                                                         |
-| `ssr`                 | `boolean`           | `true`       | Helps Yandex detect initial server-side load correctly.                                 |
-| `webvisor`            | `boolean`           | `false`      | Enables Webvisor (session recording).                                                   |
-| `clickmap`            | `boolean`           | `true`       | Enables Click map.                                                                      |
-| `trackLinks`          | `boolean`           | `true`       | Tracks external link clicks.                                                            |
-| `accurateTrackBounce` | `boolean \| number` | `true`       | Accurate bounce rate tracking.                                                          |
-| `ecommerce`           | `boolean \| string` | `false`      | Enable E-commerce data collection. Pass container name (e.g., `"dataLayer"`) if needed. |
-| `params`              | `object`            | `undefined`  | Session parameters.                                                                     |
-| `userParams`          | `object`            | `undefined`  | User parameters.                                                                        |
-| `debug`               | `boolean`           | `false`      | Logs hits and inits to console for debugging.                                           |
+| Prop                  | Type                 | Default      | Description                                                                                   |
+| :-------------------- | :------------------- | :----------- | :-------------------------------------------------------------------------------------------- |
+| `counterId`           | `number \| string`   | **Required** | Your Yandex Metrika Counter ID.                                                               |
+| `ssr`                 | `boolean`            | `true`       | Helps Yandex detect initial server-side load correctly.                                       |
+| `webvisor`            | `boolean`            | `false`      | Enables Webvisor (session recording).                                                         |
+| `clickmap`            | `boolean`            | `true`       | Enables Click map.                                                                            |
+| `trackLinks`          | `boolean`            | `true`       | Tracks external link clicks.                                                                  |
+| `accurateTrackBounce` | `boolean \| number`  | `true`       | Accurate bounce rate tracking (true = 15s, or pass custom timeout in ms).                     |
+| `ecommerce`           | `boolean \| string`  | `false`      | Enable E-commerce data collection. Pass container name (e.g., `"dataLayer"`) if needed.       |
+| `type`                | `number`             | `0`          | Counter type. `1` for Yandex Advertising Network (RSYA), `0` for standard.                    |
+| `trackHash`           | `boolean`            | `false`      | Track changes in the URL hash (`#anchor`) as separate hits.                                   |
+| `sendTitle`           | `boolean`            | `true`       | Send the page `<title>` with each hit.                                                        |
+| `childIframe`         | `boolean`            | `false`      | Record iframe content without a counter.                                                      |
+| `trustedDomains`      | `string[]`           | `undefined`  | List of trusted domains for iframe recording.                                                 |
+| `params`              | `object \| any[]`    | `undefined`  | Visit parameters (session params).                                                            |
+| `userParams`          | `object`             | `undefined`  | User parameters.                                                                              |
+| `config`              | `Record<string,any>` | `{}`         | Any additional raw Yandex config. `defer` and `triggerEvent` are controlled by the component. |
+| `debug`               | `boolean`            | `false`      | Logs init and hits to console for debugging.                                                  |
+| `lazy`                | `boolean`            | `false`      | Enable lazy loading of `tag.js` (loads on first interaction or after timeout).                |
+| `timeout`             | `number`             | `3500`       | Fallback timeout (ms) to auto-load script in lazy mode if there is no user interaction.       |
 
 ## 🛠 Troubleshooting
 
@@ -118,6 +143,14 @@ Ensure the `<YandexMetrika />` component is mounted on the page. The helper func
 ### AdBlockers
 
 If you don't see events in the dashboard, check if you have an AdBlocker enabled. It often blocks `mc.yandex.ru`.
+
+### Lazy mode enabled but no hits
+
+If you enabled `lazy={true}` and do not see hits on fast visits, remember that the script loads on first interaction or after the timeout. For critical pages you can disable lazy mode:
+
+```astro
+<YandexMetrika counterId={12345678} lazy={false} />
+```
 
 ## Author
 
