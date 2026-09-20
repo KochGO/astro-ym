@@ -1,0 +1,12 @@
+{
+  "name": "astro-ym-fixture",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "astro": "^6.4.8",
+    "astro-ym": "file:../.."
+  },
+  "scripts": {
+    "build": "astro build"
+  }
+}
